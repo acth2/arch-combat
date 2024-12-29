@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Specification-Title: Sword Blocking Mechanics
+Specification-Version: 21.1.0
+Specification-Vendor: Fuzs
+Implementation-Title: Sword Blocking Mechanics
+Implementation-Version: 21.1.0
+Implementation-Vendor: Fuzs
+Implementation-Timestamp: 2024-12-29T02:41:50+0100
+Implementation-Timestamp-Milli: 1735436510921
+Implementation-URL: https://github.com/Fuzss/swordblockingmechanics
+Built-On-Java: 21.0.5+11-LTS (Eclipse Adoptium)
+Built-On-Minecraft: 1.21.1
+
