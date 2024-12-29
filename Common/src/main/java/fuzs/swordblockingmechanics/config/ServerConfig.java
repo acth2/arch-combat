@@ -7,7 +7,7 @@ import fuzs.swordblockingmechanics.handler.SwordBlockingHandler;
 public class ServerConfig implements ConfigCore {
     public boolean allowBlockingAndParrying = true;
     public boolean prioritizeOffHand = true;
-    public double blockedDamage = 0.5;
+    public double blockedDamage = 0.15;
     public boolean damageSwordOnBlock = false;
     public double knockbackReduction = 0.2;
     public double protectionArc = 360.0;
