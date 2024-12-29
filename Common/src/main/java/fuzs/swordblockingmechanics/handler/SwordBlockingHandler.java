@@ -176,7 +176,7 @@ public class SwordBlockingHandler {
         }
 
         if(player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && Minecraft.getInstance().options.keyUse.isDown() || KeyTransferer.KEY_BLOCK.isDown()) {
-            return true;
+            return false;
         }
 
         if(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem && !player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && Minecraft.getInstance().options.keyUse.isDown() || KeyTransferer.KEY_BLOCK.isDown()) {
