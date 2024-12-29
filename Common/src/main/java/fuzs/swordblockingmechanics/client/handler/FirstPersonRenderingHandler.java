@@ -10,13 +10,18 @@ import fuzs.swordblockingmechanics.handler.SwordBlockingHandler;
 import fuzs.swordblockingmechanics.mixin.client.accessor.ItemInHandRendererAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class FirstPersonRenderingHandler {
 
@@ -54,15 +59,23 @@ public class FirstPersonRenderingHandler {
         matrixStack.mulPose(Axis.XP.rotationDegrees(-102.25F));
         matrixStack.mulPose(Axis.YP.rotationDegrees(direction * 13.365F));
         matrixStack.mulPose(Axis.ZP.rotationDegrees(direction * 78.05F));
-        Player player = Minecraft.getInstance().player;
 
-        if (Minecraft.getInstance().options.keyAttack.isDown()) {
-            if(hand.name().equals("RIGHT")) {
-                player.swing(InteractionHand.MAIN_HAND);
-            }
 
-            if(hand.name().equals("LEFT")) {
-                player.swing(InteractionHand.OFF_HAND);
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.options.keyAttack.isDown()) {
+            LocalPlayer player = mc.player;
+            double reachDistance = 5.0D;
+            HitResult hitResult = player.pick(reachDistance, 0.0F, false);
+
+            if (hitResult instanceof BlockHitResult blockHitResult) {
+                BlockPos blockPos = blockHitResult.getBlockPos();
+                if (player.level().getBlockState(blockPos).getBlock() != Blocks.AIR) {
+                    if ("RIGHT".equals(hand.name())) {
+                        player.swing(InteractionHand.MAIN_HAND);
+                    } else if ("LEFT".equals(hand.name())) {
+                        player.swing(InteractionHand.OFF_HAND);
+                    }
+                }
             }
         }
     }
