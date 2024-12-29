@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "package": "fuzs.swordblockingmechanics.mixin",
+  "mixins": [
+  ],
+  "client": [
+    "client.HumanoidModelMixin",
+    "client.ItemInHandRendererMixin",
+    "client.PlayerItemInHandLayerMixin",
+    "client.accessor.ItemInHandRendererAccessor",
+    "client.OptionsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

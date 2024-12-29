@@ -1,0 +1,49 @@
+modLoader = "javafml"
+loaderVersion = "*"
+license = "MPL-2.0"
+issueTrackerURL = "https://github.com/Fuzss/swordblockingmechanics/issues"
+
+[[mods]]
+modId = "swordblockingmechanics"
+displayName = "Sword Blocking Mechanics"
+description = "Sword blocking is back! Exactly like it used to be, or different? Your choice!"
+version = "21.1.0"
+authors = "Fuzs"
+logoFile = "mod_banner.png"
+logoBlur = false
+displayURL = "https://github.com/Fuzss/swordblockingmechanics"
+updateJSONURL = "https://raw.githubusercontent.com/Fuzss/modresources/main/update/swordblockingmechanics.json"
+displayTest = "MATCH_VERSION"
+
+[[mixins]]
+config="swordblockingmechanics.common.mixins.json"
+
+[[mixins]]
+config="swordblockingmechanics.neoforge.mixins.json"
+
+[[dependencies.swordblockingmechanics]]
+modId = "neoforge"
+mandatory = true
+type = "required"
+versionRange = "[21.1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.swordblockingmechanics]]
+modId = "minecraft"
+mandatory = true
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.swordblockingmechanics]]
+modId = "puzzleslib"
+mandatory = true
+type = "required"
+versionRange = "[21.1.7,)"
+ordering = "NONE"
+side = "BOTH"
+
+[modproperties.swordblockingmechanics]
+catalogueImageIcon = "mod_logo.png"

@@ -1,0 +1,6 @@
+v1	named	intermediary
+FIELD	fuzs/swordblockingmechanics/mixin/client/PlayerItemInHandLayerMixin	Lnet/minecraft/client/renderer/ItemInHandRenderer;	itemInHandRenderer	field_38904
+FIELD	fuzs/swordblockingmechanics/mixin/client/ItemInHandRendererMixin	Lnet/minecraft/client/Minecraft;	minecraft	field_4050
+FIELD	fuzs/swordblockingmechanics/mixin/client/OptionsMixin	[Lnet/minecraft/client/KeyMapping;	keyMappings	field_1839
+FIELD	fuzs/swordblockingmechanics/mixin/client/HumanoidModelMixin	Lnet/minecraft/client/model/geom/ModelPart;	rightArm	field_3401
+FIELD	fuzs/swordblockingmechanics/mixin/client/HumanoidModelMixin	Lnet/minecraft/client/model/geom/ModelPart;	leftArm	field_27433

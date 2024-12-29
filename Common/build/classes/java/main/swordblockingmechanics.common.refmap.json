@@ -1,0 +1,42 @@
+{
+  "mappings": {
+    "fuzs/swordblockingmechanics/mixin/client/HumanoidModelMixin": {
+      "Lnet/minecraft/client/model/HumanoidModel;setupAttackAnimation(Lnet/minecraft/world/entity/LivingEntity;F)V": "Lnet/minecraft/class_572;method_29353(Lnet/minecraft/class_1309;F)V",
+      "setupAnim": "Lnet/minecraft/class_572;method_17087(Lnet/minecraft/class_1309;FFFFF)V"
+    },
+    "fuzs/swordblockingmechanics/mixin/client/ItemInHandRendererMixin": {
+      "itemUsed": "Lnet/minecraft/class_759;method_3215(Lnet/minecraft/class_1268;)V"
+    },
+    "fuzs/swordblockingmechanics/mixin/client/OptionsMixin": {
+      "<init>": "Lnet/minecraft/class_315;<init>(Lnet/minecraft/class_310;Ljava/io/File;)V"
+    },
+    "fuzs/swordblockingmechanics/mixin/client/PlayerItemInHandLayerMixin": {
+      "renderArmWithItem": "Lnet/minecraft/class_5697;method_4192(Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Lnet/minecraft/class_811;Lnet/minecraft/class_1306;Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;I)V"
+    },
+    "fuzs/swordblockingmechanics/mixin/client/accessor/ItemInHandRendererAccessor": {
+      "applyItemArmAttackTransform": "method_3217(Lnet/minecraft/class_4587;Lnet/minecraft/class_1306;F)V",
+      "applyItemArmTransform": "method_3224(Lnet/minecraft/class_4587;Lnet/minecraft/class_1306;F)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "fuzs/swordblockingmechanics/mixin/client/HumanoidModelMixin": {
+        "Lnet/minecraft/client/model/HumanoidModel;setupAttackAnimation(Lnet/minecraft/world/entity/LivingEntity;F)V": "Lnet/minecraft/class_572;method_29353(Lnet/minecraft/class_1309;F)V",
+        "setupAnim": "Lnet/minecraft/class_572;method_17087(Lnet/minecraft/class_1309;FFFFF)V"
+      },
+      "fuzs/swordblockingmechanics/mixin/client/ItemInHandRendererMixin": {
+        "itemUsed": "Lnet/minecraft/class_759;method_3215(Lnet/minecraft/class_1268;)V"
+      },
+      "fuzs/swordblockingmechanics/mixin/client/OptionsMixin": {
+        "<init>": "Lnet/minecraft/class_315;<init>(Lnet/minecraft/class_310;Ljava/io/File;)V"
+      },
+      "fuzs/swordblockingmechanics/mixin/client/PlayerItemInHandLayerMixin": {
+        "renderArmWithItem": "Lnet/minecraft/class_5697;method_4192(Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;Lnet/minecraft/class_811;Lnet/minecraft/class_1306;Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;I)V"
+      },
+      "fuzs/swordblockingmechanics/mixin/client/accessor/ItemInHandRendererAccessor": {
+        "applyItemArmAttackTransform": "method_3217(Lnet/minecraft/class_4587;Lnet/minecraft/class_1306;F)V",
+        "applyItemArmTransform": "method_3224(Lnet/minecraft/class_4587;Lnet/minecraft/class_1306;F)V"
+      }
+    }
+  }
+}
