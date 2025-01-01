@@ -11,7 +11,8 @@
     "client.PlayerItemInHandLayerMixin",
     "client.accessor.ItemInHandRendererAccessor",
     "client.OptionsMixin",
-    "client.MenuMixin"
+    "client.MenuMixin",
+    "client.ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
