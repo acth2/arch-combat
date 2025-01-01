@@ -6,6 +6,7 @@ import fuzs.puzzleslib.api.event.v1.core.EventResultHolder;
 import fuzs.puzzleslib.api.event.v1.data.DefaultedDouble;
 import fuzs.puzzleslib.api.event.v1.data.MutableFloat;
 import fuzs.puzzleslib.api.event.v1.data.MutableInt;
+import fuzs.puzzleslib.api.init.v3.override.CommandOverrides;
 import fuzs.puzzleslib.api.item.v2.ItemHelper;
 import fuzs.swordblockingmechanics.SwordBlockingMechanics;
 import fuzs.swordblockingmechanics.capability.ParryCooldownCapability;
@@ -28,9 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-
 import java.util.concurrent.atomic.AtomicBoolean;
-
 public class SwordBlockingHandler {
     public static final int DEFAULT_ITEM_USE_DURATION = 72_000;
 
@@ -147,23 +146,23 @@ public class SwordBlockingHandler {
         return false;
     }
 
-public static boolean isActiveItemStackBlocking(Player player) {
-        if (Minecraft.getInstance().level != null) {
-            if (KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
-                Minecraft.getInstance().options.keyUse.setDown(true);
-                if (keyLogic.getAndSet(false)) {
-                    counterKeyLogic.set(true);
-                    Minecraft.getInstance().options.keyUse.setKey(InputConstants.UNKNOWN);
+    public static boolean isActiveItemStackBlocking(Player player) {
+                if (!SwordBlockingMechanics.isServerEnvironment()) {
+                    if (KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
+                        Minecraft.getInstance().options.keyUse.setDown(true);
+                        if (keyLogic.getAndSet(false)) {
+                            counterKeyLogic.set(true);
+                            Minecraft.getInstance().options.keyUse.setKey(InputConstants.UNKNOWN);
+                        }
+                        return true;
+                    } else {
+                        if (counterKeyLogic.getAndSet(false)) {
+                            Minecraft.getInstance().options.keyUse.setDown(false);
+                            Minecraft.getInstance().options.keyUse.setKey(Minecraft.getInstance().options.keyUse.getDefaultKey());
+                            keyLogic.set(true);
+                        }
+                    }
                 }
-                return true;
-            } else {
-                if (counterKeyLogic.getAndSet(false)) {
-                    Minecraft.getInstance().options.keyUse.setDown(false);
-                    Minecraft.getInstance().options.keyUse.setKey(Minecraft.getInstance().options.keyUse.getDefaultKey());
-                    keyLogic.set(true);
-                }
-            }
-        }
 
             if (player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && !(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem)) {
                 return false;
@@ -190,14 +189,13 @@ public static boolean isActiveItemStackBlocking(Player player) {
             }
 
 
-        if (Minecraft.getInstance().getCurrentServer() == null) {
+        if (!SwordBlockingMechanics.isServerEnvironment()) {
             if (KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
                 return true;
             }
         }
         return false;
     }
-
     public static double getParryStrengthScale(Player player) {
         ParryCooldownCapability capability = ModRegistry.PARRY_COOLDOWN_CAPABILITY.get(player);
         if (capability.isCooldownActive()) {
