@@ -55,7 +55,6 @@ public abstract class MenuMixin extends Screen{
 
     @Overwrite
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        // Render the background
         float f = 1.0F;
         this.renderPanorama(guiGraphics, partialTick);
         int i = Mth.ceil(f * 255.0F) << 24;
@@ -78,12 +77,10 @@ public abstract class MenuMixin extends Screen{
         }
         this.renderBlurredBackground(partialTick);
 
-        // Render the logo above the buttons (centered horizontally)
-        int logoX = this.width / 2 - 32; // Center the logo (64px width)
-        int logoY = this.height / 3 - 60; // Position the logo above the buttons
+        int logoX = this.width / 2 - 32;
+        int logoY = this.height / 3 - 60;
         guiGraphics.blit(CUSTOM_LOGO, logoX, logoY, 0, 0, 64, 64, 64, 64);
-
-        // Render the rest of the screen
+        
         super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 
