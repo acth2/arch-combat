@@ -147,49 +147,53 @@ public class SwordBlockingHandler {
         return false;
     }
 
-    public static boolean isActiveItemStackBlocking(Player player) {
-        if(KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem ) {
-            Minecraft.getInstance().options.keyUse.setDown(true);
-            if(keyLogic.getAndSet(false)) {
-                counterKeyLogic.set(true);
-                Minecraft.getInstance().options.keyUse.setKey(InputConstants.UNKNOWN);
+public static boolean isActiveItemStackBlocking(Player player) {
+        if (Minecraft.getInstance().level != null) {
+            if (KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
+                Minecraft.getInstance().options.keyUse.setDown(true);
+                if (keyLogic.getAndSet(false)) {
+                    counterKeyLogic.set(true);
+                    Minecraft.getInstance().options.keyUse.setKey(InputConstants.UNKNOWN);
+                }
+                return true;
+            } else {
+                if (counterKeyLogic.getAndSet(false)) {
+                    Minecraft.getInstance().options.keyUse.setDown(false);
+                    Minecraft.getInstance().options.keyUse.setKey(Minecraft.getInstance().options.keyUse.getDefaultKey());
+                    keyLogic.set(true);
+                }
             }
-            return true;
-        }else {
-            if(counterKeyLogic.getAndSet(false)) {
-                Minecraft.getInstance().options.keyUse.setDown(false);
-                Minecraft.getInstance().options.keyUse.setKey(Minecraft.getInstance().options.keyUse.getDefaultKey());
-                keyLogic.set(true);
+        }
+
+            if (player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && !(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem)) {
+                return false;
             }
-        }
 
-        if(player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && !(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem)) {
-            return false;
-        }
+            if (!player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && !(player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem) && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
+                return false;
+            }
 
-        if(!player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && !(player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem) && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
-            return false;
-        }
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem && player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && player.isUsingItem()) {
+                return true;
+            }
 
-        if(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem && player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && Minecraft.getInstance().options.keyUse.isDown() || KeyTransferer.KEY_BLOCK.isDown()) {
-            return true;
-        }
+            if (player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && player.isUsingItem()) {
+                return false;
+            }
 
-        if(player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && Minecraft.getInstance().options.keyUse.isDown() || KeyTransferer.KEY_BLOCK.isDown()) {
-            return false;
-        }
+            if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem && !player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && player.isUsingItem()) {
+                return true;
+            }
 
-        if(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem && !player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && Minecraft.getInstance().options.keyUse.isDown() || KeyTransferer.KEY_BLOCK.isDown()) {
-            return true;
-        }
-
-        if(player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && !player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && Minecraft.getInstance().options.keyUse.isDown() || KeyTransferer.KEY_BLOCK.isDown()) {
-            return true;
-        }
+            if (player.getItemInHand(InteractionHand.OFF_HAND).getItem() instanceof SwordItem && !player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && player.isUsingItem()) {
+                return true;
+            }
 
 
-        if(KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
-            return true;
+        if (Minecraft.getInstance().getCurrentServer() == null) {
+            if (KeyTransferer.KEY_BLOCK.isDown() && player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SwordItem) {
+                return true;
+            }
         }
         return false;
     }
