@@ -17,12 +17,47 @@ import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class SwordBlockingMechanics implements ModConstructor {
-    public static final String MOD_ID = "swordblockingmechanics";
+    public static final String MOD_ID = "swordblockingmechanics2";
     public static final String MOD_NAME = "Sword Blocking Mechanics";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
+    private static final String SERVER_MOD_NAME = "acth2practice";
+    private static final String MOD_FOLDER = "mods";
+    private static Boolean isServerEnvironmentCached = null;
+
+    public static boolean isServerEnvironment() {
+        if (isServerEnvironmentCached == null) {
+            isServerEnvironmentCached = checkServerModPresence();
+        }
+        return isServerEnvironmentCached;
+    }
+
     public static final ConfigHolder CONFIG = ConfigHolder.builder(MOD_ID).client(ClientConfig.class).server(ServerConfig.class);
+
+    private static boolean checkServerModPresence() {
+        try {
+            Path modsDir = Paths.get(MOD_FOLDER);
+            if (Files.exists(modsDir) && Files.isDirectory(modsDir)) {
+                File[] files = modsDir.toFile().listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.getName().contains(SERVER_MOD_NAME)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error checking for server mod: " + e.getMessage());
+        }
+        return false;
+    }
 
     @Override
     public void onConstructMod() {
